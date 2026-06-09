@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホ専用なので、画面幅にぴったり合わせる設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CROSSMIX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- 画面1：一覧画面（メイン）                                     -->
+  <!-- ============================================================ -->
+  <div id="list-screen" class="screen">
+
+    <!-- ヘッダー：ロゴ ＋ 右上の「登録する」ボタン -->
+    <header class="app-header">
+      <h1 class="logo">CROSSMIX</h1>
+      <button id="open-form-btn" class="btn-primary header-btn">登録する</button>
+    </header>
+
+    <!-- タグ別セクションが入る場所。STEP3でここにJavaScriptがカードを並べます -->
+    <main id="sections" class="sections">
+
+      <!-- ↓ここから下は「見た目確認用の仮の中身」です（STEP3で本物に差し替えます） -->
+
+      <!-- セクション1 -->
+      <section class="tag-section">
+        <h2 class="section-title">話しかけて〜！</h2>
+        <div class="card-row">
+          <!-- 仮カード（サンプル） -->
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- セクション2 -->
+      <section class="tag-section">
+        <h2 class="section-title">名刺交換したい</h2>
+        <div class="card-row">
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- セクション3 -->
+      <section class="tag-section">
+        <h2 class="section-title">そっと見守り中</h2>
+        <div class="card-row">
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-photo placeholder-photo"></div>
+            <div class="card-body">
+              <p class="card-name">塩月慶子</p>
+              <p class="card-affiliation">株式会社ライトライト</p>
+              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ↑ここまで仮の中身 -->
+
+    </main>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- 画面2：プロフィール登録フォーム（最初は隠れている）            -->
+  <!-- ============================================================ -->
+  <div id="form-screen" class="screen hidden">
+
+    <!-- フォームのヘッダー：戻るボタン -->
+    <header class="app-header form-header">
+      <button id="close-form-btn" class="back-btn" aria-label="戻る">←</button>
+      <h2 class="form-title">プロフィール登録</h2>
+    </header>
+
+    <!-- 入力フォーム本体 -->
+    <form id="profile-form" class="profile-form">
+
+      <!-- 写真 -->
+      <label class="field-label">写真</label>
+      <div class="photo-upload">
+        <!-- カメラアイコンの丸（タップで画像選択） -->
+        <label for="photo-input" class="photo-circle">
+          <span class="camera-icon">📷</span>
+        </label>
+        <!-- 実際のファイル選択（見えないようにしておく） -->
+        <input type="file" id="photo-input" accept="image/*" hidden>
+      </div>
+
+      <!-- 名前（必須） -->
+      <label class="field-label">名前 <span class="required">*</span></label>
+      <input type="text" id="name-input" class="text-input" placeholder="ニックネームでもOK">
+
+      <!-- 所属 -->
+      <label class="field-label">所属</label>
+      <input type="text" id="affiliation-input" class="text-input" placeholder="会社名・団体名など">
+
+      <!-- 一言 -->
+      <label class="field-label">一言</label>
+      <textarea id="comment-input" class="text-input textarea" placeholder="あなたについて教えてください"></textarea>
+
+      <!-- タグ（1つだけ選択） -->
+      <label class="field-label">タグ</label>
+      <div id="tag-list" class="tag-list">
+        <!-- タグのボタンはSTEP2でJavaScriptが並べます。今は仮表示 -->
+        <button type="button" class="tag-chip">話しかけて〜</button>
+        <button type="button" class="tag-chip">お酒飲んじゃってます</button>
+        <button type="button" class="tag-chip">ガチ学び中</button>
+        <button type="button" class="tag-chip">迷子です</button>
+        <button type="button" class="tag-chip">名刺交換したい</button>
+      </div>
+
+      <!-- SNSリンク -->
+      <label class="field-label">SNSリンク</label>
+      <input type="url" id="twitter-input" class="text-input" placeholder="Twitter / X">
+      <input type="url" id="instagram-input" class="text-input" placeholder="Instagram">
+      <input type="url" id="linkedin-input" class="text-input" placeholder="LinkedIn">
+      <input type="url" id="facebook-input" class="text-input" placeholder="Facebook">
+
+      <!-- HPリンク -->
+      <label class="field-label">HPリンク</label>
+      <input type="url" id="url-input" class="text-input" placeholder="https://example.com">
+
+      <!-- 登録ボタン -->
+      <button type="submit" class="btn-primary submit-btn">登録する</button>
+    </form>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- 詳細モーダル（最初は隠れている。STEP5で中身を作ります）        -->
+  <!-- ============================================================ -->
+  <div id="detail-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <!-- STEP5でここに詳細を表示します -->
+    </div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- 読み込むファイルたち                                          -->
+  <!-- ============================================================ -->
+
+  <!-- jQuery（外部から読み込み。$(...) という書き方が使えるようになります） -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Firebase本体（接続情報の設定はご自身で。読み込みタグだけ用意しておきます） -->
+  <!-- ※STEP2以降で使います。今は読み込むだけ -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <!-- ↓ここにご自身のFirebase設定ファイルを読み込んでください（例） -->
+  <!-- <script src="firebase-config.js"></script> -->
+
+  <!-- このアプリの動きをまとめたファイル -->
+  <script src="functions.js"></script>
+</body>
+</html>
