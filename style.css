@@ -9,9 +9,14 @@
   box-sizing: border-box;
 }
 
+/* 420pxより外側（PCで見たときの左右の余白）の背景色 */
+html {
+  background: #cad5e2;
+}
+
 body {
   font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  background: #eef1f5;   /* 薄いグレーの背景 */
+  background: #eef1f5;   /* 薄いグレーの背景（スマホ幅の中身） */
   color: #1a1a2e;
   /* スマホ専用。PCで見たときも中央にスマホ幅で表示する */
   max-width: 420px;
@@ -90,8 +95,11 @@ body {
   display: flex;
   gap: 14px;
   overflow-x: auto;          /* 横スクロール */
-  padding: 4px 20px;
+  /* 上下に余白を多めにとる：傾いた角や影が切れないようにするため */
+  padding: 16px 20px 24px;
   scroll-snap-type: x mandatory;
+  /* スナップ（吸い付き）でも左の余白を保つ：1枚目が左端に張り付くのを防ぐ */
+  scroll-padding-left: 20px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -109,6 +117,26 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   scroll-snap-align: start;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;  /* なめらかに動かす */
+}
+
+/* マウスを乗せたとき：少しだけ傾けて、影を濃くして浮き上がらせる */
+.card:hover {
+  transform: rotate(-2deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 「すべて表示」カード（カードと同じ大きさの赤文字ボタン） */
+.more-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e8455f;
 }
 
 /* カードの写真（丸） */
@@ -232,6 +260,11 @@ body {
   opacity: 0.5;
 }
 
+/* 写真を選んだあと（プレビュー中）はカメラアイコンを隠す */
+.photo-circle.has-photo .camera-icon {
+  display: none;
+}
+
 /* タグのボタン（チップ）を折り返して並べる */
 .tag-list {
   display: flex;
@@ -250,7 +283,7 @@ body {
   font-family: inherit;
 }
 
-/* 選択中のタグ（STEP2で使う見た目） */
+/* 選択中のタグの見た目 */
 .tag-chip.selected {
   background: #e8455f;
   color: #fff;
@@ -266,7 +299,7 @@ body {
 
 
 /* ============================================================ */
-/* 詳細モーダル（STEP5で中身を作ります）                         */
+/* 詳細モーダル                                                 */
 /* ============================================================ */
 .modal {
   position: fixed;
@@ -291,4 +324,71 @@ body {
   max-width: 360px;
   padding: 24px;
   z-index: 1;
+  max-height: 86vh;          /* 画面より大きくならないように */
+  overflow-y: auto;          /* 内容が多いときは縦スクロール */
+}
+
+/* 閉じるボタン（×） */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: none;
+  background: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #9aa0ad;
+  cursor: pointer;
+}
+
+/* 詳細の写真（大きめの丸） */
+.detail-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 4px auto 16px;     /* 中央寄せ */
+}
+
+/* 詳細の名前 */
+.detail-name {
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* 詳細の所属 */
+.detail-affiliation {
+  font-size: 14px;
+  color: #8b92a1;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* 詳細の一言（改行をそのまま表示・フル表示） */
+.detail-comment {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 16px;
+  white-space: pre-wrap;
+}
+
+/* リンク一覧 */
+.detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* リンクボタン1つ */
+.detail-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: #eef1f5;
+  color: #1a1a2e;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
 }

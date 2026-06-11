@@ -20,82 +20,10 @@
       <button id="open-form-btn" class="btn-primary header-btn">登録する</button>
     </header>
 
-    <!-- タグ別セクションが入る場所。STEP3でここにJavaScriptがカードを並べます -->
+    <!-- タグ別セクションが入る場所。中身は functions.js が並べる -->
     <main id="sections" class="sections">
 
-      <!-- ↓ここから下は「見た目確認用の仮の中身」です（STEP3で本物に差し替えます） -->
-
-      <!-- セクション1 -->
-      <section class="tag-section">
-        <h2 class="section-title">話しかけて〜！</h2>
-        <div class="card-row">
-          <!-- 仮カード（サンプル） -->
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- セクション2 -->
-      <section class="tag-section">
-        <h2 class="section-title">名刺交換したい</h2>
-        <div class="card-row">
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- セクション3 -->
-      <section class="tag-section">
-        <h2 class="section-title">そっと見守り中</h2>
-        <div class="card-row">
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card-photo placeholder-photo"></div>
-            <div class="card-body">
-              <p class="card-name">塩月慶子</p>
-              <p class="card-affiliation">株式会社ライトライト</p>
-              <p class="card-comment">誰か話しかけてください〜！今日は誰かと話したくてきたんですけど、誰か話しかけてくだ…</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ↑ここまで仮の中身 -->
+      <!-- セクションとカードは functions.js が自動で並べる（リアルタイム表示） -->
 
     </main>
   </div>
@@ -141,12 +69,7 @@
       <!-- タグ（1つだけ選択） -->
       <label class="field-label">タグ</label>
       <div id="tag-list" class="tag-list">
-        <!-- タグのボタンはSTEP2でJavaScriptが並べます。今は仮表示 -->
-        <button type="button" class="tag-chip">話しかけて〜</button>
-        <button type="button" class="tag-chip">お酒飲んじゃってます</button>
-        <button type="button" class="tag-chip">ガチ学び中</button>
-        <button type="button" class="tag-chip">迷子です</button>
-        <button type="button" class="tag-chip">名刺交換したい</button>
+        <!-- タグのボタンは functions.js が TAGS 配列から自動で並べる -->
       </div>
 
       <!-- SNSリンク -->
@@ -167,12 +90,12 @@
 
 
   <!-- ============================================================ -->
-  <!-- 詳細モーダル（最初は隠れている。STEP5で中身を作ります）        -->
+  <!-- 詳細モーダル（最初は隠れている。中身は functions.js が作る） -->
   <!-- ============================================================ -->
   <div id="detail-modal" class="modal hidden">
     <div class="modal-backdrop"></div>
     <div class="modal-content">
-      <!-- STEP5でここに詳細を表示します -->
+      <!-- ここに詳細の中身が入る -->
     </div>
   </div>
 
@@ -181,19 +104,35 @@
   <!-- 読み込むファイルたち                                          -->
   <!-- ============================================================ -->
 
-  <!-- jQuery（外部から読み込み。$(...) という書き方が使えるようになります） -->
+  <!-- jQuery（外部から読み込み。$(...) という書き方が使えるようになる） -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <!-- Firebase本体（接続情報の設定はご自身で。読み込みタグだけ用意しておきます） -->
-  <!-- ※STEP2以降で使います。今は読み込むだけ -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <!-- ============================================================ -->
+  <!-- Firebaseに接続する（モジュール版）                            -->
+  <!-- ============================================================ -->
+  <script type="module">
+  // Firebase本体と、Firestore（データの保存場所）を読み込む
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
-  <!-- ↓ここにご自身のFirebase設定ファイルを読み込んでください（例） -->
-  <!-- <script src="firebase-config.js"></script> -->
+  // 自分のプロジェクトとつなぐための設定（Firebaseの管理画面で発行されるもの）
+  const firebaseConfig = {
+    authDomain: "crossmix.firebaseapp.com",
+    projectId: "crossmix",
+    storageBucket: "crossmix.firebasestorage.app",
+    messagingSenderId: "415370806719",
+    appId: "1:415370806719:web:ef91d96e673060a0520d0a"
+  };
 
-  <!-- このアプリの動きをまとめたファイル -->
-  <script src="functions.js"></script>
+  // 上の設定でFirebaseに接続する
+  const app = initializeApp(firebaseConfig);
+
+  // データの保存場所(db)を用意し、他のファイル(functions.js)からも使えるように共有しておく
+  // ※写真は Storage を使わず、縮小して Firestore に直接保存する（無料プランで完結）
+  window.db = getFirestore(app);
+</script>
+
+  <!-- このアプリの動きをまとめたファイル（モジュール版で読み込む） -->
+  <script type="module" src="functions.js"></script>
 </body>
 </html>
